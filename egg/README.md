@@ -1,6 +1,6 @@
-# cms-egg-server
+# ecms
 
-cms服务器
+egg cms
 
 ## QuickStart
 

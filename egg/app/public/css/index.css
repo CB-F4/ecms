@@ -1,0 +1,29 @@
+html, body {
+  height: 100%;
+}
+.app-layout {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex: 1;
+}
+
+.filter-holder {
+  display: flex;
+  flex-direction: column;
+}
+.sidebar {
+  max-width: 150px;
+  min-height: 100vh;
+  background-color: rgba(74, 74, 80, 0.13);
+  flex: 1;
+  transition: 0.4s;
+}
+.uk-subnav-pill>*>:first-child {
+  padding: 20px 40px;
+}
+
+.layout-main {
+  flex: 1;
+  padding: 40px;
+}

@@ -1,19 +1,24 @@
 {
-  "name": "cms-egg-server",
+  "name": "ecms",
   "version": "1.0.0",
-  "description": "cms服务器",
+  "description": "egg cms",
   "private": true,
   "egg": {
     "declarations": true
   },
   "dependencies": {
     "egg": "^2.15.1",
-    "egg-scripts": "^2.11.0"
+    "egg-scripts": "^2.11.0",
+    "egg-sequelize": "^5.2.0",
+    "egg-validate": "^2.0.2",
+    "egg-view-ejs": "^2.0.0",
+    "moment": "^2.24.0",
+    "mysql2": "^1.6.5"
   },
   "devDependencies": {
     "autod": "^3.0.1",
     "autod-egg": "^1.1.0",
-    "egg-bin": "^4.11.0",
+    "egg-bin": "^4.13.1",
     "egg-ci": "^1.11.0",
     "egg-mock": "^3.21.0",
     "eslint": "^5.13.0",
@@ -23,8 +28,8 @@
     "node": ">=10.0.0"
   },
   "scripts": {
-    "start": "egg-scripts start --daemon --title=egg-server-cms-egg-server",
-    "stop": "egg-scripts stop --title=egg-server-cms-egg-server",
+    "start": "egg-scripts start --daemon --title=egg-server-ecms",
+    "stop": "egg-scripts stop --title=egg-server-ecms",
     "dev": "egg-bin dev",
     "debug": "egg-bin debug",
     "test": "npm run lint -- --fix && npm run test-local",

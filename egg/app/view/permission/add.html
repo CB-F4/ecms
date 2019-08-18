@@ -1,0 +1,79 @@
+<%- include ../public/public_header.html %>
+<div class="app-layout">
+  <%- include ../public/public_nav.html %>
+  <div class="layout-main">
+    <form action="/admin/permission/add" method="POST">
+      <legend class="uk-legend">权限增加</legend>
+      <div class="uk-margin">
+        <label class="uk-form-label" for="form-stacked-text">权限名称</label>
+        <div class="uk-form-controls">
+          <input
+            class="uk-input"
+            id="form-stacked-text"
+            type="text"
+            placeholder="请输入名字"
+            name="title"
+          />
+        </div>
+      </div>
+
+      <div class="uk-margin">
+        <label class="uk-form-label" for="form-stacked-select">节点类型</label>
+        <div class="uk-form-controls">
+          <select class="uk-select" name="type" id="form-stacked-select">
+            <option value="1">模块</option>
+            <option value="2">菜单</option>
+            <option value="3">操作</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="uk-margin">
+            <label class="uk-form-label" for="form-stacked-select2">所属模块</label>
+            <div class="uk-form-controls">
+              <select class="uk-select" name="permission_id" id="form-stacked-select2">
+                <option value="0">顶级模块</option>
+                <%if(permissionList.length >0  ){%>
+                    <%for(var i =0;i<permissionList.length;i++){ %>
+                        <%if(permissionList[i].type == 1){ %>
+                            <option value= <%= permissionList[i].id%> > 
+                                <%= permissionList[i].title %>
+                            </option>
+                        <%}%>         
+                    <%}%>
+                <%}%>
+              </select>
+            </div>
+          </div>
+
+          <div class="uk-margin">
+                <label class="uk-form-label" for="form-stacked-text">url</label>
+                <div class="uk-form-controls">
+                  <input
+                    class="uk-input"
+                    id="form-stacked-text"
+                    type="text"
+                    placeholder="请输入url"
+                    name="url"
+                  />
+                </div>
+              </div>
+        
+
+      <div class="uk-margin">
+        <div class="uk-form-label">权限状态</div>
+        <div class="uk-form-controls">
+          <label
+            ><input class="uk-radio" type="radio" name="status" value="1"/>正常</label
+          ><br />
+          <label
+            ><input class="uk-radio" type="radio" name="status" value="0"/> 不可用
+            02</label
+          >
+        </div>
+      </div>
+      <button class="uk-button uk-button-primary" type="submit">提交</button>
+    </form>
+  </div>
+</div>
+<%- include ../public/public_footer.html %>

@@ -1,0 +1,47 @@
+<%- include ./public/public_header.html %>
+    <div class="app-layout">
+            <div class="uk-position-relative uk-visible-toggle uk-light" tabindex="-1" uk-slideshow="animation: push">
+
+                    <ul class="uk-slideshow-items">
+                        <li>
+                            <img src="https://getuikit.com/docs/images/photo.jpg" alt="" uk-cover>
+                            <div class="uk-position-center uk-position-small uk-text-center">
+                                <h2 uk-slideshow-parallax="x: 100,-100">ecms</h2>
+                                <p uk-slideshow-parallax="x: 200,-200">Lorem ipsum dolor sit amet.</p>
+                            </div>
+                        </li>
+                        <li>
+                            <img src="https://getuikit.com/docs/images/dark.jpg" alt="" uk-cover>
+                            <div class="uk-position-center uk-position-small uk-text-center">
+                                <h2 uk-slideshow-parallax="x: 100,-100">ecms</h2>
+                                <p uk-slideshow-parallax="x: 200,-200">Lorem ipsum dolor sit amet.</p>
+                            </div>
+                        </li>
+                        <li>
+                            <img src="https://getuikit.com/docs/images/light.jpg" alt="" uk-cover>
+                            <div class="uk-position-center uk-position-small uk-text-center">
+                                <h2 uk-slideshow-parallax="y: -50,0,0; opacity: 1,1,0">ecms</h2>
+                                <p uk-slideshow-parallax="y: 50,0,0; opacity: 1,1,0">Lorem ipsum dolor sit amet.</p>
+                            </div>
+                        </li>
+                    </ul>
+                
+                    <a class="uk-position-center-left uk-position-small uk-hidden-hover" href="#" uk-slidenav-previous uk-slideshow-item="previous"></a>
+                    <a class="uk-position-center-right uk-position-small uk-hidden-hover" href="#" uk-slidenav-next uk-slideshow-item="next"></a>
+                
+                </div>
+            <div class="layout-main">
+                <div class="uk-grid-collapse uk-child-width-expand@s uk-text-center" uk-grid>
+                    <div>
+                        <div class="uk-background-muted uk-padding">Item</div>
+                    </div>
+                    <div>
+                        <div class="uk-background-primary uk-padding uk-light">Item</div>
+                    </div>
+                    <div>
+                        <div class="uk-background-secondary uk-padding uk-light">Item</div>
+                    </div>
+                </div>
+            </div>
+    </div>
+    <%- include ./public/public_footer.html %>

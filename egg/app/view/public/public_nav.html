@@ -1,0 +1,11 @@
+<aside id="sidebar" class="sidebar">
+    <ul class="uk-subnav uk-subnav-pill filter-holder">
+      <%for(var i =0;i<pageNav.length;i++){%>
+          <!-- <li role="presentation" class="active" uk-filter-control><a href=<%=pageNav[i].url%></a>><%=pageNav[i].title%></a></li> -->
+          <%for(var j = 0;j<pageNav[i].permissions.length;j++){%>
+              <li role="presentation" uk-filter-control><a href=<%=pageNav[i].permissions[j].url%>><%=pageNav[i].permissions[j].title%></a></li>
+              <%}%>
+                  <%}%>
+
+  </ul>
+</aside>
