@@ -1,0 +1,52 @@
+<%- include ../public/public_header.html %>
+    <div class="app-layout">
+        <%- include ../public/public_nav.html %>
+            <div class="layout-main table-responsive">
+                <div uk-grid>
+                    <h3>角色列表</h3>
+                    <a class="uk-button uk-button-primary uk-margin-left" href="/admin/role/add">增加角色</a>
+                </div>
+                
+                <table class="uk-table uk-table-striped">
+                    <thead>
+                        <tr>
+                            <th>id</th>
+                            <th>name</th>
+                            <th>状态</th>
+                            <th>操作</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <%for(var i =0;i<res.length;i++){ %>
+
+                            <tr>
+                                <td>
+                                    <%= res[i].id%>
+                                </td>
+                                <td>
+                                    <%= res[i].name%>
+                                </td>
+                                <td>
+                                    <%= res[i].status === 1? '正常': '停用'%>
+                                </td>
+                                <!-- <td>
+                                    <%= res[i].created_at%>
+                                </td>
+                                <td>
+                                    <%= res[i].updated_at%>
+                                </td> -->
+                                <td>
+                                    <a href="/admin/role/auth?id=<%= res[i].id%>" class="uk-button uk-button-primary uk-button-small">授权</a>
+                                    <a href="/admin/role/edit?id=<%= res[i].id%>" class="uk-button uk-button-default uk-button-small">编辑</a>
+                                    <a href="/admin/role/delete/<%= res[i].id%>" class="uk-button uk-button-danger uk-button-small">删除</a>
+                                </td>
+                            </tr>
+                            <%}%>
+
+                    </tbody>
+                </table>
+            </div>
+    </div>
+
+
+    <%- include ../public/public_footer.html %>
