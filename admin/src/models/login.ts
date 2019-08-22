@@ -3,6 +3,7 @@ import { parse, stringify } from 'qs';
 
 import { EffectsCommandMap } from 'dva';
 import { routerRedux } from 'dva/router';
+import { adminLogin } from '@/services/user';
 
 export function getPageQuery(): {
   [key: string]: string;
@@ -19,6 +20,7 @@ export interface ModelType {
   namespace: string;
   state: {};
   effects: {
+    login: Effect;
     logout: Effect;
   };
   reducers: {
@@ -34,6 +36,19 @@ const Model: ModelType = {
   },
 
   effects: {
+    *login({ payload, callback }, { call, put }) {
+      const res = yield call(adminLogin, payload);
+
+      yield put({
+        type: 'changeLoginStatus',
+        payload: res,
+      });
+
+      if (callback && typeof callback === 'function') {
+        callback(res); // 返回结果
+      }
+    },
+
     *logout(_, { put }) {
       const { redirect } = getPageQuery();
       // redirect

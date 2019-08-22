@@ -11,3 +11,10 @@ export async function queryCurrent(): Promise<any> {
 export async function queryNotices(): Promise<any> {
   return request('/api/notices');
 }
+
+export async function adminLogin(params: { name: string; password: string }) {
+  return request('/api/admin/login', {
+    method: 'POST',
+    data: params,
+  });
+}

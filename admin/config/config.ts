@@ -1,18 +1,14 @@
 import { IConfig, IPlugin } from 'umi-types';
-
-import defaultSettings from './defaultSettings';
-// https://umijs.org/config/
 import slash from 'slash2';
+import defaultSettings from './defaultSettings'; // https://umijs.org/config/
+
 import webpackPlugin from './plugin.config';
 
-const { pwa, primaryColor } = defaultSettings;
-
-// preview.pro.ant.design only do not use in your production ;
+const { pwa, primaryColor } = defaultSettings; // preview.pro.ant.design only do not use in your production ;
 // preview.pro.ant.design 专用环境变量，请不要在你的项目中使用它。
+
 const { ANT_DESIGN_PRO_ONLY_DO_NOT_USE_IN_YOUR_PRODUCTION } = process.env;
-
 const isAntDesignProPreview = ANT_DESIGN_PRO_ONLY_DO_NOT_USE_IN_YOUR_PRODUCTION === 'site';
-
 const plugins: IPlugin[] = [
   [
     'umi-plugin-react',
@@ -41,8 +37,7 @@ const plugins: IPlugin[] = [
               importWorkboxFrom: 'local',
             },
           }
-        : false,
-      // default close dll, because issue https://github.com/ant-design/ant-design-pro/issues/4665
+        : false, // default close dll, because issue https://github.com/ant-design/ant-design-pro/issues/4665
       // dll features https://webpack.js.org/plugins/dll-plugin/
       // dll: {
       //   include: ['dva', 'dva/router', 'dva/saga', 'dva/fetch'],
@@ -59,9 +54,8 @@ const plugins: IPlugin[] = [
       autoAddMenu: true,
     },
   ],
-];
+]; // 针对 preview.pro.ant.design 的 GA 统计代码
 
-// 针对 preview.pro.ant.design 的 GA 统计代码
 if (isAntDesignProPreview) {
   plugins.push([
     'umi-plugin-ga',
@@ -77,6 +71,7 @@ if (isAntDesignProPreview) {
   ]);
 }
 
+// eslint-disable-next-line @typescript-eslint/no-object-literal-type-assertion
 export default {
   plugins,
   block: {
@@ -90,6 +85,16 @@ export default {
   // umi routes: https://umijs.org/zh/guide/router.html
   routes: [
     {
+      path: '/login',
+      component: '../layouts/LoginLayout',
+      routes: [
+        {
+          path: '/login',
+          component: './login',
+        },
+      ],
+    },
+    {
       path: '/',
       component: '../layouts/BasicLayout',
       Routes: ['src/pages/Authorized'],
@@ -100,6 +105,16 @@ export default {
           name: 'welcome',
           icon: 'smile',
           component: './Welcome',
+        },
+        {
+          name: 'basic',
+          path: '/profile/basic',
+          component: './profile/basic',
+        },
+        {
+          name: 'test',
+          path: '/user/test',
+          component: './test',
         },
         {
           component: './404',
@@ -158,13 +173,11 @@ export default {
     basePath: '/',
   },
   chainWebpack: webpackPlugin,
-  /*
   proxy: {
-    '/server/api/': {
-      target: 'https://preview.pro.ant.design/',
+    '/api/': {
+      target: 'http://127.0.0.1:7001',
       changeOrigin: true,
-      pathRewrite: { '^/server': '' },
+      pathRewrite: { '^/api': '/api' },
     },
   },
-  */
 } as IConfig;

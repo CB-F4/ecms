@@ -42,6 +42,7 @@ export interface DefaultSettings {
   colorWeak: boolean;
 }
 
+// eslint-disable-next-line @typescript-eslint/no-object-literal-type-assertion
 export default {
   navTheme: 'dark',
   primaryColor: '#1890FF',
@@ -54,7 +55,7 @@ export default {
   menu: {
     locale: true,
   },
-  title: 'Ant Design Pro',
+  title: 'ECMS',
   pwa: false,
   iconfontUrl: '',
 } as DefaultSettings;
