@@ -5,13 +5,15 @@ const Service = require('egg').Service;
 class PermissionService extends Service {
   async index() {
     return await this.ctx.model.Permission.findAll()
-      .then(admins => {
-        return admins.map(i => {
+      .then(permissions => {
+        return permissions.map(i => {
           return {
+            id: i.id,
             title: i.title,
             url: i.url,
             type: i.type,
             status: i.status,
+            permission_id: i.permission_id,
             created_at: i.created_at,
             updated_at: i.updated_at,
           };

@@ -14,11 +14,13 @@ module.exports = app => {
     password: {
       type: STRING,
     },
+    status: {
+      type: INTEGER,
+    },
     created_at: DATE,
     updated_at: DATE,
-    roleId: {
+    role_id: {
       type: INTEGER,
-      field: 'role_id',
     },
   }, {
     freezeTableName: true,

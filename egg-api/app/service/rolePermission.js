@@ -6,6 +6,8 @@ class RolePermissionService extends Service {
   async show(id) {
     const { ctx } = this;
     const { Op } = this.ctx.app.Sequelize;
+    console.log('=============>>>>>' + id);
+
     const pids = await ctx.model.RolePermission.findAll({
       where: {
         role_id: id,
@@ -28,8 +30,9 @@ class RolePermissionService extends Service {
   async access(payload) {
     const { ctx } = this;
     try {
-      let { id, pids } = payload;
-      pids = pids.split(',');
+      const { id, pids } = payload;
+
+      // pids = pids.split(',');
 
       await this.ctx.model.RolePermission.destroy({
         where: {

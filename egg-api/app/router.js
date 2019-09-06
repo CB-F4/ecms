@@ -19,12 +19,9 @@ module.exports = app => {
   router.put('/api/admin/permission/edit', controller.permission.update);
 
   router.get('/api/admin/role', controller.role.index);
-  router.get('/api/admin/role/:id', controller.role.showPermission);
+  router.get('/api/admin/role/:id', controller.role.showPermission); // 显示role授权
   router.post('/api/admin/role/add', controller.role.create);
   router.post('/api/admin/role/delete', controller.role.destroy);
   router.put('/api/admin/role/edit', controller.role.update);
-  router.post('/api/admin/role/access', controller.role.access);
-
-
+  router.post('/api/admin/role/access', controller.role.access); // 授权
 };
-

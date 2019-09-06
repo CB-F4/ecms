@@ -8,7 +8,33 @@ class AdminController extends Controller {
     const { ctx } = this;
     const payload = ctx.request.body;
     const res = await ctx.service.adminAccess.login(payload);
-    ctx.helper.toResponse(ctx, 200, { ...res }, '登录成功');
+
+    function checkResName(resItem) {
+      return {
+        name: resItem.title,
+        status: resItem.status,
+        type: resItem.type,
+        id: resItem.id,
+        icon: resItem.icon || 'user',
+        meta: true,
+        path: resItem.url,
+      };
+    }
+
+    const menu = res.menu.map(m => {
+      if (m.children && m.children.length > 0) {
+        return {
+          name: m.title,
+          children: m.children.map(i => (checkResName(i))),
+          icon: m.icon || 'user',
+          meta: true,
+          path: '',
+        };
+      }
+      return checkResName(m);
+    });
+
+    ctx.helper.toResponse(ctx, 200, { ...res, menu }, '登录成功');
   }
 
   async index() {

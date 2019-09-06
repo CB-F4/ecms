@@ -7,7 +7,13 @@ class AdminAccessService extends Service {
     const { ctx, service } = this;
 
     const admin = await this.ctx.model.User.findOne({
-      where: { username: payload.username },
+      where: { username: payload.username || payload.userName },
+      include: [
+        {
+          model: this.ctx.model.Role,
+          as: 'role',
+        },
+      ],
     });
 
     if (!admin) {
@@ -30,23 +36,32 @@ class AdminAccessService extends Service {
       `ecms:admin:userAccess:${admin.id}:roleId`,
       admin.roleId
     );
+    let roleList = await this.ctx.model.Role.findAll();
+    roleList = roleList.filter(i => i.status === 1);
     return {
       token,
+      role: admin.role.name,
       menu,
+      allRole: roleList,
+      username: payload.username || payload.userName,
     };
   }
 
-  async checkPermission(uid) {
+  async checkPermission(rid) {
     const { ctx, app } = this;
 
     let path = ctx.path;
 
-    const roleId = await app.redis.get(`ecms:admin:userAccess:${uid}:roleId`);
+    const roleId = await app.redis.get(`ecms:admin:userAccess:${rid}:roleId`);
     const purls = await ctx.service.adminAccess.changeRedis(roleId);
 
     path = path.replace('/api', '');
 
     if (purls.includes(path)) {
+      return true;
+    }
+
+    if (purls.includes('/admin/role') && path.match(/\/role\/\d{1,3}$/)) {
       return true;
     }
 
@@ -67,13 +82,26 @@ class AdminAccessService extends Service {
         `ecms:admin:rolePermission:${roleId}`
       );
     }
-    const menu = JSON.parse(role_permission).map(i => {
-      return {
-        title: i.title,
-        url: i.url,
-      };
+    role_permission = JSON.parse(role_permission);
+    role_permission = ctx.service.adminAccess.makeMenu(
+      Array.from(role_permission)
+    );
+    return role_permission;
+  }
+
+  async makeMenu(menu) {
+    let menuArr = [];
+    menuArr = menu.filter((i, index, arr) => {
+      if (i.permission_id === 0) {
+        i.children = [];
+        return i;
+      }
+      const pid = i.permission_id;
+      const parent = arr.find(el => pid === el.id);
+      parent.children.push(i);
+      return i.permission_id === 0;
     });
-    return menu;
+    return menuArr;
   }
 
   /**
@@ -82,7 +110,6 @@ class AdminAccessService extends Service {
    * @param {boolean} update 是否重新授权
    */
   async changeRedis(roleId, update) {
-
     const { ctx, app } = this;
     let purls = [];
 

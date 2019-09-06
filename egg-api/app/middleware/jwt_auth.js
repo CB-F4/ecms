@@ -16,7 +16,8 @@ module.exports = (options, app) => {
     try {
       const decoded = app.jwt.verify(jwtAuthKey, app.config.jwt.secret);
       ctx.request.body.user_id = decoded.user_id;
-      const isPermission = await ctx.service.adminAccess.checkPermission(decoded.user_id);
+      const admin = await ctx.model.User.findByPk(decoded.user_id);
+      const isPermission = await ctx.service.adminAccess.checkPermission(admin.roleId);
       if (isPermission) {
         await next();
       } else {

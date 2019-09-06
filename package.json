@@ -1,0 +1,8 @@
+{
+  "devDependencies": {
+    "http-proxy-middleware": "^0.19.1"
+  },
+  "dependencies": {
+    "redux-persist-transform-immutable": "^5.0.0"
+  }
+}

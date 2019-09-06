@@ -49,7 +49,8 @@ class RoleController extends Controller {
 
   async showPermission() {
     const { ctx } = this;
-    const { id } = ctx.query;
+    const query = ctx.request.url.split('/');
+    const id = query[query.length - 1] || ctx.query.id;
     const res = await ctx.service.rolePermission.show(id);
     ctx.helper.toResponse(ctx, 200, res, '获取成功');
   }
