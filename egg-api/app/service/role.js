@@ -4,7 +4,7 @@ const Service = require('egg').Service;
 
 class RoleService extends Service {
   async index() {
-    const { ctx } = this;
+    const {ctx} = this;
     try {
       return await ctx.model.Role.findAll()
         .then(data => {
@@ -26,7 +26,7 @@ class RoleService extends Service {
   }
 
   async create(payload) {
-    const { ctx } = this;
+    const {ctx} = this;
     try {
       payload = {
         name: payload.name,
@@ -40,11 +40,13 @@ class RoleService extends Service {
   }
 
   async destroy(id) {
-    const { ctx } = this;
+    const {ctx} = this;
     try {
       const role = await ctx.model.Role.findByPk(id);
       if (role) {
         return role.destroy();
+      } else {
+        ctx.throw(404, '请检查删除ID');
       }
     } catch (error) {
       ctx.throw(500, error);
@@ -52,13 +54,26 @@ class RoleService extends Service {
   }
 
   async update(payload) {
-    const { ctx } = this;
+    const {ctx} = this;
     try {
       const role = await ctx.model.Role.findByPk(payload.id);
       if (role) {
         delete payload.id;
         return await role.update(payload);
       }
+    } catch (error) {
+      ctx.throw(500, error);
+    }
+  }
+
+  async show(id) {
+    const {ctx} = this;
+    try {
+      const role = await ctx.model.Role.findByPk(id);
+      if (role) {
+        return role;
+      }
+      ctx.throw(404, '没有相应role,请检查role_id');
     } catch (error) {
       ctx.throw(500, error);
     }

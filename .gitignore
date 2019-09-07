@@ -7,6 +7,7 @@ yarn-error.log*
 .vscode
 # Runtime data
 pids
+.idea
 *.pid
 *.seed
 *.pid.lock

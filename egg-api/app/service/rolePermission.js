@@ -4,10 +4,8 @@ const Service = require('egg').Service;
 
 class RolePermissionService extends Service {
   async show(id) {
-    const { ctx } = this;
-    const { Op } = this.ctx.app.Sequelize;
-    console.log('=============>>>>>' + id);
-
+    const {ctx} = this;
+    const {Op} = this.ctx.app.Sequelize;
     const pids = await ctx.model.RolePermission.findAll({
       where: {
         role_id: id,
@@ -28,9 +26,9 @@ class RolePermissionService extends Service {
   }
 
   async access(payload) {
-    const { ctx } = this;
+    const {ctx} = this;
     try {
-      const { id, pids } = payload;
+      const {id, pids} = payload;
 
       // pids = pids.split(',');
 

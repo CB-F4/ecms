@@ -57,6 +57,7 @@ class AdminAccessService extends Service {
 
     path = path.replace('/api', '');
 
+
     if (purls.includes(path)) {
       return true;
     }
@@ -64,6 +65,7 @@ class AdminAccessService extends Service {
     if (purls.includes('/admin/role') && path.match(/\/role\/\d{1,3}$/)) {
       return true;
     }
+
 
     return false;
   }
