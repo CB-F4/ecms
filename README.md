@@ -32,26 +32,27 @@
 
 目前进度
 
-[x] egg-api 异常捕获中间件 <br/>
-[x] egg-api jwt校验，权限中间件 <br/>
-[x] egg-api rbac <br/>
-[x] egg-api user role permission 接口 <br/>
-[] egg-api egg-vaildate 参数校验 <br/>
-[] egg-api post resource等接口 <br/>
+- [x] egg-api 异常捕获中间件 <br/>
+- [x] egg-api jwt校验，权限中间件 <br/>
+- [x] egg-api rbac <br/>
+- [x] egg-api user role permission 接口 <br/>
+- [] egg-api egg-vaildate 参数校验 <br/>
+- [] egg-api post resource等接口 <br/>
+---
 
-[x] ecms-admin login <br/>
-[x] ecms-admin user <br/>
-[x] ecms-admin role <br/>
-[x] ecms-admin permission <br/>
-[] ecms-admin props检验 <br/>
-[] ecms-admin 路由守卫 <br/>
-[] ecms-admin redux持久化 <br/>
-[] ecms-admin check post <br/>
-[] ecms-admin post <br/>
-[] ecms-admin resource <br/>
-
-[x] egg-ssr user role permission login module实现<br/>
-
-[] nest-api
+- [x] ecms-admin login <br/>
+- [x] ecms-admin user <br/>
+- [x] ecms-admin role <br/>
+- [x] ecms-admin permission <br/>
+- [] ecms-admin props检验 <br/>
+- [] ecms-admin 路由守卫 <br/>
+- [] ecms-admin redux持久化 <br/>
+- [] ecms-admin check post <br/>
+- [] ecms-admin post <br/>
+- [] ecms-admin resource <br/>
+----
+- [x] egg-ssr user role permission login module实现<br/>
+----
+- [] nest-api
 
 
